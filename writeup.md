@@ -11,10 +11,15 @@ The two encoder layers serve the purpose of pulling out features that will help 
 The final parameters I picked to achieve the 40% threshold were as follows:
 
 **Learning rate:** 0.007 
+
 **Batch size:** 128
+
 **Number of Epochs:** 30
+
 **Steps per epoch:** 200
+
 **Validation steps:** 50
+
 **Workers:** 2
 
 I arrived at these numbers after a series of model trainings that left me just under the 40% benchmark.  I originally started out with a learning rate of 0.1, 5 epochs, and only 10 steps per epoch.  At this point I was still attempting to run the training on my personal computer, so even this light run took a couple hours, and yielded an IOU close to zero.  Next I bumped up to 10 epochs with 20 steps each, and ran this overnight.  When the model stalled out about halfway through, I knew it was time to head to AWS as suggested in the lessons.  After moving to AWS I was able to increase the batch size, number of epochs, and steps per epoch significantly while also cutting down the training time to a fraction of what it was on my personal computer.  I continued to use the default values for steps per epoch, validation steps, or workers parameters from the original cloned repo.  Therefore I mainly focused my tuning on learning rate and number of epochs.  I found that decreasing my learning rate to 0.01 from 0.1 significantly improved the model, but was still in the 30% score range.  After that I found decreasing the learning rate a little more (from 0.01 to 0.007) while also increasing the number of epochs up to 30 took the model over the 40% threshold.              
